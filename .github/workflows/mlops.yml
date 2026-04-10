@@ -2,36 +2,33 @@ name: MLOps Pipeline
 
 on:
   push:
-    branches: [ "main" ]   # déclenche le pipeline à chaque push sur main
+    branches: [ "main" ]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # Force les actions à utiliser Node.js 24
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Récupérer ton code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Installer Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      # 3. Installer les dépendances
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # 4. Lancer les tests unitaires
       - name: Run tests
         run: pytest
 
-      # 5. Entraîner le modèle
       - name: Train model
         run: python src/train.py
 
-      # 6. Sauvegarder les artefacts (modèle et colonnes)
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
