@@ -2,7 +2,7 @@ name: MLOps Pipeline
 
 on:
   push:
-    branches: [ "main" ]   # déclenche le pipeline à chaque push sur la branche main
+    branches: [ "main" ]   # déclenche le pipeline à chaque push sur main
 
 jobs:
   build:
@@ -30,3 +30,10 @@ jobs:
       # 5. Entraîner le modèle
       - name: Train model
         run: python src/train.py
+
+      # 6. Sauvegarder les artefacts (modèle et colonnes)
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: model-artifacts
+          path: artifacts/
