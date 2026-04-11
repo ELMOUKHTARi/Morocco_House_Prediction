@@ -42,8 +42,12 @@ def train_model():
         mlflow.log_param("random_state", 10)
         mlflow.log_metric("r2_score", score)
 
-        # Sauvegarde du modèle dans MLflow
-        mlflow.sklearn.log_model(model, "model")
+        # Sauvegarde du modèle dans MLflow (nouvelle syntaxe)
+        mlflow.sklearn.log_model(
+            sk_model=model,
+            name="house_prediction_model",
+            serialization_format="skops"   # format recommandé au lieu de pickle
+        )
 
     print(f"✅ Accuracy (R² score) : {score}")
 
