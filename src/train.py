@@ -11,6 +11,9 @@ from preprocess import load_data, preprocess_data, split_data
 import mlflow
 import mlflow.sklearn
 
+mlflow.set_tracking_uri("file:./mlruns")   # stocke les runs dans ./mlruns
+mlflow.set_experiment("house-price-prediction")
+
 
 def train_model():
     print("🔹 Chargement des données...")

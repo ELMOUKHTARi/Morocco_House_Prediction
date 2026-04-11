@@ -1,17 +1,25 @@
-from flask import Flask, request, jsonify
+
+import os
+
+
+from flask import Flask, request, jsonify, render_template
 import util
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "static")
+)
 
-app = Flask(__name__)
-
+@app.route('/')
+def home():
+    return render_template("app.html")
 
 @app.route('/get_location_names')
 def get_location_names():
-    response = jsonify({
-        'locations': util.get_location_names()
-    })
+    response = jsonify({'locations': util.get_location_names()})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
-
 
 @app.route('/predict_home_price', methods=['POST'])
 def predict_home_price():
@@ -26,8 +34,7 @@ def predict_home_price():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-
 if __name__ == "__main__":
     util.load_saved_artifacts()
-    print("starting the bhp server...")
-    app.run()
+    print("🚀 Starting the BHP server...")
+    app.run(host="0.0.0.0", port=5000)

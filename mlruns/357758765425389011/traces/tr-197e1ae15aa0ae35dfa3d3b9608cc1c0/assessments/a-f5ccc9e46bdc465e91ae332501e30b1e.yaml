@@ -1,0 +1,14 @@
+assessment_id: a-f5ccc9e46bdc465e91ae332501e30b1e
+assessment_name: expected_response
+create_time: '2026-04-10T19:49:36.279Z'
+expectation:
+  value: 'Critical: API key exposure, missing error handling. Major: Use Promise.all()
+    for parallel requests. Minor: Inconsistent error formatting.'
+last_update_time: '2026-04-10T19:49:36.279Z'
+metadata:
+  demo: 'true'
+source:
+  source_id: demo_annotator
+  source_type: HUMAN
+trace_id: tr-197e1ae15aa0ae35dfa3d3b9608cc1c0
+valid: true

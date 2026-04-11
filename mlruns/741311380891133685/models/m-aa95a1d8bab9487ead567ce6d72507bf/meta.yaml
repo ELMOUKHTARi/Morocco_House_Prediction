@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/Palai/Desktop/Morocco_House_prediction_project/mlruns/741311380891133685/models/m-aa95a1d8bab9487ead567ce6d72507bf/artifacts
+creation_timestamp: 1775908294559
+experiment_id: '741311380891133685'
+last_updated_timestamp: 1775908302399
+model_id: m-aa95a1d8bab9487ead567ce6d72507bf
+model_type: null
+name: model
+source_run_id: e8713ec0cc954c4fb1957757756d5786
+status: 2
+status_message: null

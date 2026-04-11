@@ -1,0 +1,11 @@
+
+pour creer
+docker-compose up --build
+
+pour lancer
+docker-compose up -d
+http://localhost:5000/
+
+
+pour arreter
+docker-compose down

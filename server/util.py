@@ -1,11 +1,11 @@
 import json
 import pickle
 import numpy as np
+import os
 
 __locations = None
 __data_columns = None
 __model = None
-
 
 def get_estimated_price(location, sqft, bhk, bath):
     """
@@ -49,13 +49,17 @@ def load_saved_artifacts():
     global __locations
     global __model
 
+    # Chemin absolu vers le dossier artifacts (dans le même dossier que util.py)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    artifacts_dir = os.path.join(base_dir, "artifacts")
+
     # Charger les colonnes
-    with open('artifacts/5columns_ma.json', 'r') as f:
+    with open(os.path.join(artifacts_dir, '5columns_ma.json'), 'r') as f:
         __data_columns = json.load(f)['data_columns']
         __locations = __data_columns[3:]  # les colonnes après bhk, sqft, bath
 
     # Charger le modèle
-    with open('artifacts/5abd_sana_model.pickle', 'rb') as f:
+    with open(os.path.join(artifacts_dir, '5abd_sana_model.pickle'), 'rb') as f:
         __model = pickle.load(f)
 
     print('loading saved artifacts...done')

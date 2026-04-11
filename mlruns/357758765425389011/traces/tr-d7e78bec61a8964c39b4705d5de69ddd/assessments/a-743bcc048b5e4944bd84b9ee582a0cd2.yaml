@@ -1,0 +1,14 @@
+assessment_id: a-743bcc048b5e4944bd84b9ee582a0cd2
+assessment_name: expected_response
+create_time: '2026-04-10T19:50:24.724Z'
+expectation:
+  value: '$10,000 at 5% annual compound interest for 10 years = $16,288.95. Total
+    interest earned: $6,288.95.'
+last_update_time: '2026-04-10T19:50:24.724Z'
+metadata:
+  demo: 'true'
+source:
+  source_id: demo_annotator
+  source_type: HUMAN
+trace_id: tr-d7e78bec61a8964c39b4705d5de69ddd
+valid: true
