@@ -2,6 +2,7 @@ import pandas as pd
 import pickle
 import json
 import os
+import platform
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -11,13 +12,20 @@ from preprocess import load_data, preprocess_data, split_data
 import mlflow
 import mlflow.sklearn
 
-mlflow.set_tracking_uri("file:./mlruns")   # stocke les runs dans ./mlruns
+# 🔹 Choix du backend MLflow selon l'environnement
+if platform.system() == "Windows":
+    # En local Windows, backend fichier
+    os.makedirs("mlruns", exist_ok=True)
+    mlflow.set_tracking_uri("file:mlruns")
+else:
+    # En CI/CD (Linux GitHub Actions), backend SQLite
+    mlflow.set_tracking_uri("sqlite:///mlflow.db")
+
 mlflow.set_experiment("house-price-prediction")
 
 
 def train_model():
     print("🔹 Chargement des données...")
-    
     df = load_data("model/DataPOO.csv")
 
     print("🔹 Préprocessing...")
@@ -42,11 +50,11 @@ def train_model():
         mlflow.log_param("random_state", 10)
         mlflow.log_metric("r2_score", score)
 
-        # Sauvegarde du modèle dans MLflow (nouvelle syntaxe)
+        # Sauvegarde du modèle dans MLflow
         mlflow.sklearn.log_model(
             sk_model=model,
             name="house_prediction_model",
-            serialization_format="skops"   # format recommandé au lieu de pickle
+            serialization_format="skops"   # format recommandé
         )
 
     print(f"✅ Accuracy (R² score) : {score}")
