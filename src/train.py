@@ -14,7 +14,6 @@ import mlflow.sklearn
 
 # 🔹 Choix du backend MLflow selon l'environnement
 if platform.system() == "Windows":
-    # En local Windows, backend fichier
     os.makedirs("mlruns", exist_ok=True)
     mlflow.set_tracking_uri("file:mlruns")
 else:
@@ -40,26 +39,22 @@ def train_model():
     print("🔹 Entraînement du modèle...")
     model = LinearRegression()
 
-    # Démarrer un run MLflow
     with mlflow.start_run():
         model.fit(X_train, y_train)
         score = model.score(X_test, y_test)
 
-        # Log des paramètres et métriques
         mlflow.log_param("test_size", 0.2)
         mlflow.log_param("random_state", 10)
         mlflow.log_metric("r2_score", score)
 
-        # Sauvegarde du modèle dans MLflow
+        # ✅ Fix: utiliser artifact_path au lieu de name
         mlflow.sklearn.log_model(
             sk_model=model,
-            name="house_prediction_model",
-            serialization_format="skops"   # format recommandé
+            artifact_path="house_prediction_model",
         )
 
     print(f"✅ Accuracy (R² score) : {score}")
 
-    # Créer dossier artifacts si n'existe pas
     os.makedirs("artifacts", exist_ok=True)
 
     print("🔹 Sauvegarde du modèle...")

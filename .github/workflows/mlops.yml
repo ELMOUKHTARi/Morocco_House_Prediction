@@ -7,7 +7,6 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,6 +19,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
+          cache: 'pip'                  # ✅ Cache des dépendances pip
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -29,9 +29,18 @@ jobs:
 
       - name: Train model
         run: python src/train.py
+        working-directory: ${{ github.workspace }}   # ✅ Évite les problèmes de chemins relatifs
 
-      - name: Upload artifacts
+      - name: Upload model artifacts
         uses: actions/upload-artifact@v4
         with:
           name: model-artifacts
           path: artifacts/
+          retention-days: 30            # ✅ Durée de rétention explicite
+
+      - name: Upload MLflow DB
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-db              # ✅ Sauvegarde la DB MLflow pour consulter les runs
+          path: mlflow.db
+          retention-days: 30
