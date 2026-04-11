@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Palai/Desktop/Morocco_House_prediction_project/mlruns/741311380891133685/31cb6392656841f2815cf54160aaeaa6/artifacts
+end_time: 1775939022476
+entry_point_name: ''
+experiment_id: '741311380891133685'
+lifecycle_stage: active
+run_id: 31cb6392656841f2815cf54160aaeaa6
+run_name: spiffy-colt-68
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775939002439
+status: 3
+tags: []
+user_id: Palai

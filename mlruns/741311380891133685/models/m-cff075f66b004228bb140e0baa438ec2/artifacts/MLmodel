@@ -1,0 +1,23 @@
+artifact_path: file:///C:/Users/Palai/Desktop/Morocco_House_prediction_project/mlruns/741311380891133685/models/m-cff075f66b004228bb140e0baa438ec2/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.10.5
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.7.2
+    skops_trusted_types: null
+mlflow_version: 3.11.1
+model_id: m-cff075f66b004228bb140e0baa438ec2
+model_size_bytes: 16364
+model_uuid: m-cff075f66b004228bb140e0baa438ec2
+prompts: null
+run_id: 31cb6392656841f2815cf54160aaeaa6
+utc_time_created: '2026-04-11 20:23:22.923076'
