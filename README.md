@@ -40,7 +40,7 @@ done...
 
 ## Web interface by flask framework
 
-![Capture d'écran 2024-11-12 001840](https://github.com/user-attachments/assets/37367fd1-8955-43ed-b645-9d8e82469818)
+https://github.com/ELMOUKHTARi/Morocco_House_Prediction/blob/main/Capture%20d'%C3%A9cran%202026-04-11%20151542.png
 
 
 This project can be helpful for anyone interested in real estate market predictions, especially in Moroccan cities. It demonstrates the integration of machine learning with web development to build practical, user-centered applications.
